@@ -11,7 +11,7 @@ Discover the interfaces in the current installation. Tool names below describe t
 - `wait_threads` provides compact status and reusable cursors. A completed turn does not imply a completed task.
 - `send_message_to_thread` sends follow-up input under its authorization rules. Verify whether the current host queues or steers it rather than assuming queue semantics.
 
-Project creation is host-dependent. If no supported registration tool exists, create authorized independent filesystem roots and use them as session working directories through the supported CLI or host interface. Do not call them registered sidebar projects unless that is verified. Never edit internal app databases or settings files to simulate registration. Reuse an existing chat/work project pair only when that matches the user's request.
+To prepare new local projects, create two authorized non-nested directories and run `codex app /absolute/chat-root` and `codex app /absolute/work-root`. This opens them through the public Desktop launcher. Registration may be asynchronous: verify their distinct paths and IDs with `list_projects` before using `create_thread`. If the host does not register them, use a supported working-directory interface and report that limitation. Never edit internal app databases or settings files to simulate registration. Reuse an existing chat/work pair only when it matches the request.
 
 Keep returned session IDs, actual working directories, and app project membership distinct. An independent app-server process may report different runtime status or project metadata from Desktop. Use Desktop's list for sidebar membership and actual message history for consumption.
 
@@ -33,7 +33,7 @@ codex queue --thread THREAD_ID --message 'Complete task or correction'
 
 This does not create a separate CLI conversation. A Desktop-visible session retains the same thread ID. Verify delivery through its message history. The UI's pending-list display requires UI observation if that is the claim under test. Some versions provide `--resume`; inspect local help and do not resend merely to wake a session.
 
-Prefer native MCP queue tools when exposed. Otherwise [scripts/codex_queue.py](../scripts/codex_queue.py) sends one request to the installed `codex app-server --stdio` using its public initialization handshake. It prints the unmodified JSON-RPC response, creates no sessions, stores no ledger, and runs no service.
+Prefer native MCP queue tools when exposed. Otherwise [scripts/codex_queue.py](../scripts/codex_queue.py) sends one request to the installed `codex app-server --stdio` using its public initialization handshake. It prints the unmodified JSON-RPC response, creates no sessions, stores no ledger, and runs no service. The helper uses POSIX pipe selectors; use it on macOS/Linux. On Windows, use native queue tools or another supported client.
 
 The queue protocol was exercised with Codex `0.169.0-alpha.11.1` and is experimental. If methods or parameters are rejected, retain the error and inspect that version's schema with `codex app-server generate-json-schema --help`. Do not silently substitute steer or touch internal databases.
 

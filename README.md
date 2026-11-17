@@ -53,7 +53,7 @@ The figure illustrates the original exercise and a later diagram worker. Its pro
 ## Requirements
 
 - A host with persistent user-visible sessions, project/working-directory selection, dispatch, native pending queues, and result observation. [Codex integration](skills/session-orchestrator/references/codex.md) explains the relevant interfaces and limits.
-- Python 3.9+ and the installed `codex` executable only when using the optional queue helper. It has no third-party Python dependencies and runs no background service.
+- macOS/Linux, Python 3.9+, and the installed `codex` executable only when using the optional queue helper. It has no third-party Python dependencies and runs no background service. The orchestration instructions can use equivalent native host tools on other platforms.
 
 Native queue protocols are experimental. The original exercise used Codex `0.169.0-alpha.11.1`; inspect installed help and public schemas when behavior differs. Prefer equivalent native MCP queue operations when available.
 
