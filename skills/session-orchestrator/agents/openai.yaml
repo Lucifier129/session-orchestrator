@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Orchestrator"
+  short_description: "Route persistent work sessions with native prompt queues"
+  default_prompt: "Use $session-orchestrator to coordinate persistent work sessions and manage their native prompt queues in the project I specify."
