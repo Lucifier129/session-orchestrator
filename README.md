@@ -2,7 +2,7 @@
 
 A Codex skill to **try multi-session collaboration before choosing a dedicated agent product**. Use real conversations and work sessions in the environment you already have, and decide from that experience whether another product is needed.
 
-The working idea is higher-order sessions: conversations can receive prompts from sessions and send prompts to sessions. Speak naturally without deciding queue versus steer for every thought. The main session handles dispatch, related-task corrections, and summaries. Workers execute tasks. Separate chat and work projects keep derived activity out of the user's active conversation project, while the user can still enter any worker and intervene directly.
+The working idea is higher-order sessions: conversations can receive prompts from sessions and send prompts to sessions. Speak naturally without deciding queue versus steer for every thought. The main session handles dispatch, related-task corrections, and summaries. Workers execute tasks. The user chooses whether workers share the current project or use a separate work project. Either way, the user can enter any worker and intervene directly.
 
 The skill grew out of [this session-management experiment](https://x.com/guyingjie129/status/2122537522643509519). The aim is to try richer collaboration using existing models, browser/computer tools, connectors, and native session management before building a specialized agent platform. It does not add a new backend or claim features the host lacks.
 
@@ -28,11 +28,13 @@ Available on the next turn. The installer refuses to overwrite an existing insta
 ## Use
 
 ```text
-Use $session-orchestrator. Keep this chat as coordinator. Prepare separate
-chat and work projects, create derived sessions in the work project, and
-route my independent topics there. I will add thoughts and corrections as
-we go. Observe the results and show me usable artifacts.
+Use $session-orchestrator. Keep this chat as coordinator and route my
+independent topics to persistent workers. Ask whether I want workers in
+this project or a separate work project. I will add thoughts and corrections
+as we go. Observe the results and show me usable artifacts.
 ```
+
+Two-project isolation is optional. State your choice in the initial request, or the skill will ask once before creating workers. Same-project mode uses exclusive worker paths; separate-project mode can reuse an existing chat/work pair and does not require two new projects.
 
 Project names, number of workers, models, and follow-up cadence come from the user's task. Invoking the skill does not grant extra account access, messaging permission, or publication authority.
 
@@ -78,7 +80,7 @@ Use actual session history, queue state, and artifacts. The skill does not creat
 
 高阶会话是支持这一用途的理念：用户可以想到什么就说什么，由主会话判断语义关系、派发到持久工作会话、管理原生待发队列并回读结果。用户随时可以进入任一工作会话纠正；协调者须吸收这些新输入。
 
-双项目模式将主动聊天与派生工作隔离。浏览器、Computer Use 和连接器可将外部动态上下文带入工作循环。优先用现有 Model/Harness 低成本验证方法，实际遇到能力缺口时再考虑产品化。
+双项目隔离是可选模式。用户可以选择同项目协作或聊天/工作双项目；未明确选择时，先询问一次，再创建工作会话。双项目可复用已有项目，不要求新建两个项目。浏览器、Computer Use 和连接器可将外部动态上下文带入工作循环。优先用现有 Model/Harness 低成本验证方法，实际遇到能力缺口时再考虑产品化。
 
 ## License
 

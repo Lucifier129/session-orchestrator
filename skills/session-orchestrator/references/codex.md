@@ -11,7 +11,9 @@ Discover the interfaces in the current installation. Tool names below describe t
 - `wait_threads` provides compact status and reusable cursors. A completed turn does not imply a completed task.
 - `send_message_to_thread` sends follow-up input under its authorization rules. Verify whether the current host queues or steers it rather than assuming queue semantics.
 
-To prepare new local projects, create two authorized non-nested directories and run `codex app /absolute/chat-root` and `codex app /absolute/work-root`. This opens them through the public Desktop launcher. Registration may be asynchronous: verify their distinct paths and IDs with `list_projects` before using `create_thread`. If the host does not register them, use a supported working-directory interface and report that limitation. Never edit internal app databases or settings files to simulate registration. Reuse an existing chat/work pair only when it matches the request.
+Resolve the user's same-project or separate-project choice before project creation. For same-project mode, use its existing ID for worker creation; no second project is needed.
+
+For chosen separate-project mode, reuse authorized existing roots where possible. Create only missing authorized non-nested roots and open them through `codex app /absolute/project-root`. Registration may be asynchronous: verify distinct chat/work paths and IDs with `list_projects` before using `create_thread`. If the host does not register a root, use a supported working-directory interface and report that limitation. Never edit internal app databases or settings files to simulate registration.
 
 Keep returned session IDs, actual working directories, and app project membership distinct. An independent app-server process may report different runtime status or project metadata from Desktop. Use Desktop's list for sidebar membership and actual message history for consumption.
 
@@ -69,6 +71,6 @@ Use a fresh UUID for new input and retain it for an uncertain retry. Mutation re
 
 When the user requests a queue exercise, use authorized isolated work and harmless distinguishable inputs. Keep a worker busy briefly, add several items, edit one, delete one, and reorder survivors. Verify native read-back and later consumed messages or artifacts: edited content is used, deleted or superseded input does not execute, order matches, and no pending input remains. Do not introduce synthetic tasks into unrelated work just to exercise the skill.
 
-For two-project verification, check distinct roots, actual session working directories, exclusive artifact paths, and the absence of worker output in the chat project. Include a direct user correction when the requested workflow depends on it. Report separately whether the host registered both roots in the sidebar.
+When verifying the optional two-project mode, check distinct roots, actual session working directories, exclusive artifact paths, and the absence of worker output in the chat project. Include a direct user correction when the requested workflow depends on it. Report separately whether the host registered both roots in the sidebar.
 
 This skill supplies instructions and a thin client, not a backend, credentials, or guaranteed models. If the host lacks an operation, describe the missing capability and use only an authorized supported route. Do not bypass a computer-use restriction through another UI-control path.

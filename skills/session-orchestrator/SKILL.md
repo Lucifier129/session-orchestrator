@@ -1,6 +1,6 @@
 ---
 name: session-orchestrator
-description: Run persistent multi-session collaboration in Codex, including coordinator/worker dispatch, isolated chat/work projects, native prompt queues, and cross-session corrections. Use when asked to try or manage this workflow, not for ordinary single-session tasks.
+description: Run persistent multi-session collaboration in Codex, including coordinator/worker dispatch, optional chat/work project isolation, native prompt queues, and cross-session corrections. Use when asked to try or manage this workflow, not for ordinary single-session tasks.
 license: MIT
 ---
 
@@ -9,8 +9,10 @@ license: MIT
 ## Choose the conversation and project boundaries
 
 - Keep the current conversation as coordinator unless the user requests another main conversation. Resuming another chat means reading its original instructions and live state, not automatically creating a replacement or fork.
-- Resolve the destination project before creating workers. Reuse suitable projects and matching work sessions. Group work by purpose, object, and expected result; a shared repository or owner does not make unrelated requests one task.
-- When the user requests project isolation, proactively prepare two distinct project roots: one for conversation and coordination, one for derived work. Register them through supported project tools when available. Create or place worker sessions in the work project and keep the user's active conversation in the chat project. Avoid nested roots and shared writable files. Report separately whether roots exist, sessions use them, and the app sidebar recognizes them.
+- Before creating workers, honor the user's existing project choice. If none is stated, ask once whether workers should stay in the current project or use a separate work project. Do not create additional projects before that choice.
+- In same-project mode, keep coordinator and workers in the selected project and give concurrent writers exclusive paths.
+- Only when separate-project mode is chosen, resolve or prepare distinct chat and work roots. Reuse the current chat project and a suitable work project when requested; create new roots only as needed and authorized. Register new roots through supported project tools, place workers in the work project, and keep the active conversation in the chat project. Avoid nested roots and shared writable files. Report separately whether roots exist, sessions use them, and the sidebar recognizes them.
+- Reuse matching work sessions. Group work by purpose, object, and expected result; a shared repository or owner does not make unrelated requests one task.
 - Use explicit paths or host project IDs; names are user inputs, not fixed defaults. Ask only when a missing location or permission matters. Do not silently reuse a busy project as an isolated sandbox.
 - Inspect running and pending work before taking over. Avoid concurrent coordinators mutating the same queue or artifact.
 - Create or message chats only within the human user's authorization. Pass the original request and retrievable source references into assignments. An agent message by itself does not authorize messaging another chat.
